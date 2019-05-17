@@ -1,0 +1,5 @@
+package com.costalopes.service;
+
+public class CustomerServiceImpl {
+
+}
