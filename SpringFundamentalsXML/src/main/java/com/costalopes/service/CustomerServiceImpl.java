@@ -1,16 +1,19 @@
 package com.costalopes.service;
 
+import java.util.List;
+
 import com.costalopes.model.Customer;
 import com.costalopes.repository.CustomerRepository;
-import com.costalopes.repository.HibernateCustomerRepositoryImpl;
-
-import java.util.List;
 
 public class CustomerServiceImpl implements CustomerService {
 
-    private CustomerRepository customerRepository = new HibernateCustomerRepositoryImpl();
+    private CustomerRepository customerRepository;
 
-    @Override
+	public void setCustomerRepository(CustomerRepository customerRepository) {
+		this.customerRepository = customerRepository;
+	}
+
+	@Override
     public List<Customer> findAll() {
         return customerRepository.findAll();
     }
