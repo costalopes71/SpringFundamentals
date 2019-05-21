@@ -7,8 +7,25 @@
 	<bean name="customerRepository" class="com.costalopes.repository.HibernateCustomerRepositoryImpl"/>	
 	
 	<!-- SETTER INJECTION -->
-	<bean name="customerService" class="com.costalopes.service.CustomerServiceImpl">
+	<!-- <bean name="customerService" class="com.costalopes.service.CustomerServiceImpl">
 		<property name="customerRepository" ref="customerRepository"></property>
-	</bean>
+	</bean> -->
+	
+	<!-- CONSTRUCTOR INJECTION -->
+	<!-- <bean name="customerService" class="com.costalopes.service.CustomerServiceImpl">
+		<constructor-arg index="0" ref="customerRepository"/>
+	</bean> -->
+	
+	<!-- AUTOWIRE BY CONSTRUCTOR -->
+	<!-- there is autowire by name, by type, constructor and no (no, u can not autowire) -->
+	<!-- <bean name="customerService" class="com.costalopes.service.CustomerServiceImpl" autowire="constructor"/> -->
+	
+	<!-- AUTOWIRE BY NAME: byName ira procurar um setter que coincida com o nome de algum bean definido como bean do gerenciado pelo Spring, por ex: setCustomerRepository -->
+	<!-- <bean name="customerService" class="com.costalopes.service.CustomerServiceImpl" autowire="byName"/> -->
+	<!-- Ex: -->
+	<!-- <bean name="fooRepository" class="com.costalopes.repository.HibernateCustomerRepositoryImpl"/> -->
+	
+	<!-- AUTOWIRE BYTYPE -->
+	<bean name="customerService" class="com.costalopes.service.CustomerServiceImpl" autowire="byType"/>
 	
 </beans>
