@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" 
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
-	http://www.springframework.org/schema/beans/spring-beans.xsd">
-
-	<bean name="customerRepository" class="com.costalopes.repository.HibernateCustomerRepositoryImpl"/>	
+		http://www.springframework.org/schema/beans/spring-beans.xsd 
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<context:property-placeholder location="app.properties"/>
+	
+	<bean name="customerRepository" class="com.costalopes.repository.HibernateCustomerRepositoryImpl">
+		<property name="dbUsername" value="${dbUsername}"></property>
+	</bean>	
 	
 	<!-- SETTER INJECTION -->
 	<!-- <bean name="customerService" class="com.costalopes.service.CustomerServiceImpl">
@@ -25,7 +32,13 @@
 	<!-- Ex: -->
 	<!-- <bean name="fooRepository" class="com.costalopes.repository.HibernateCustomerRepositoryImpl"/> -->
 	
-	<!-- AUTOWIRE BYTYPE -->
-	<bean name="customerService" class="com.costalopes.service.CustomerServiceImpl" autowire="byType"/>
+	<!-- AUTOWIRE BYTYPE with SCOPE (singleton or prototype, in web apps it can be other 3 type: request, session and global)-->
+	<bean name="customerService" 
+		class="com.costalopes.service.CustomerServiceImpl" 
+		autowire="byType"
+		scope="prototype"/>
+		<!-- scope="singleton -->
+	
+	
 	
 </beans>

@@ -10,9 +10,21 @@ import org.springframework.stereotype.Service;
 import com.costalopes.model.Customer;
 import com.costalopes.repository.CustomerRepository;
 
+/*
+  ABOUT SCOPES:
+  	they can be
+  		- singleton
+  		- prototype
+  		and for web apps
+  		- request scope : para cada request
+  		- session scope : para a sessao do usuario
+  		- global scope : para a aplicacao toda
+ */
+
 @Service("customerService")
 //@Scope("singleton")
-@Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
+//@Scope(ConfigurableBeanFactory.SCOPE_SINGLETON)
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class CustomerServiceImpl implements CustomerService {
 	
 //	@Autowired
